@@ -12,10 +12,19 @@ public class Tarea {
 	private LocalDateTime fechaFin;
 	private Boolean facturada;
 	
-	public void asignarEmpleado(Empleado e) {
-		// si la tarea ya tiene un empleado asignado
-		// y tiene fecha de finalizado debe lanzar una excepcion
+	public void setEmpleadoAsignado(Empleado empleadoAsignado) {
+		this.empleadoAsignado = empleadoAsignado;
 	}
+
+	// ITEM 3 RESUELTO
+	public void asignarEmpleado(Empleado e) throws tareaIncorrectaException {
+		if(this.getEmpleadoAsignado()!=null && this.getFechaFin()!=null) {
+			throw new tareaIncorrectaException();
+		}else {
+			this.setEmpleadoAsignado(e);
+		}
+	}
+	// FIN ITEM 3 RESUELTO
 
 	public Integer getId() {
 		return id;
